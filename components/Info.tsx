@@ -1,0 +1,59 @@
+import { Data } from "@/types";
+import Currency from "@/components/ui/Currency";
+import Button from "./ui/Button";
+import { ShoppingCart } from "lucide-react";
+
+interface InfoProps {
+  data: Data;
+}
+
+const Info: React.FC<InfoProps> = ({ data }) => {
+  console.log("data: ", data);
+  return (
+    <div>
+      <h1 className="text-3xl font-bold text-gray-900">
+        {data?.attributes?.title}
+      </h1>
+      <div className="mt-3 flex items-end justify-between">
+        <p className="text-2xl text-gray-900">
+          <Currency value={data.attributes.price} />
+        </p>
+      </div>
+      <hr className="my-4" />
+      <div className="flex flex-col gap-y-6">
+        <div className="flex items-center gap-x-4">
+          <h3 className="font-semibold text-black">Sizes:</h3>
+          <div>
+            {data.attributes.sizes?.map(
+              (size: { title: string }, index: number) =>
+                index + 1 !== data.attributes.sizes.length
+                  ? size.title + ", "
+                  : size.title
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-x-4">
+          <h3 className="font-semibold text-black">Colors:</h3>
+          <div className="flex gap-x-6">
+            {data.attributes.colors?.map(
+              (color: { title: string }, index: number) => (
+                <div
+                  key={color.title}
+                  className="h-6 w-6 rounded-full border border-gray-600"
+                  style={{ backgroundColor: color.title }}
+                />
+              )
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="mt-10 flex items-center gap-x-3">
+        <Button className="flex items-center gap-x-2">
+          Add to Cart <ShoppingCart />
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Info;
