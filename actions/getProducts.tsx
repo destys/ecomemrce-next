@@ -10,6 +10,7 @@ interface Query {
 }
 
 const getProducts = async (query: Query[]): Promise<MainData> => {
+  
   let filtersQuery = "";
   query.forEach((item, index) => {
     const fields = item.fields.split(",") || [];

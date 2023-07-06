@@ -8,7 +8,6 @@ interface InfoProps {
 }
 
 const Info: React.FC<InfoProps> = ({ data }) => {
-  console.log("data: ", data);
   return (
     <div>
       <h1 className="text-3xl font-bold text-gray-900">
@@ -24,26 +23,23 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Sizes:</h3>
           <div>
-            {data.attributes.sizes?.map(
-              (size: { title: string }, index: number) =>
-                index + 1 !== data.attributes.sizes.length
-                  ? size.title + ", "
-                  : size.title
+            {data.attributes.sizes?.data?.map((size: any, index: number) =>
+              data.attributes.sizes?.data.length !== index + 1
+                ? size.attributes.title + ", "
+                : size.attributes.title
             )}
           </div>
         </div>
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Colors:</h3>
-          <div className="flex gap-x-6">
-            {data.attributes.colors?.map(
-              (color: { title: string }, index: number) => (
-                <div
-                  key={color.title}
-                  className="h-6 w-6 rounded-full border border-gray-600"
-                  style={{ backgroundColor: color.title }}
-                />
-              )
-            )}
+          <div className="flex gap-x-5">
+            {data.attributes.colors?.data?.map((color: any, index: number) => (
+              <div
+                key={color.attributes.title}
+                className="h-6 w-6 rounded-full border border-gray-600"
+                style={{ backgroundColor: color.attributes.title }}
+              />
+            ))}
           </div>
         </div>
       </div>

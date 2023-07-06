@@ -6,8 +6,12 @@ interface BillBoardProps {
 
 const BillBoard: React.FC<BillBoardProps> = ({ data }) => {
 
+  if (!data.data) {
+    return null;
+  }
+
   return (
-    <div className=" p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden bg-cover">
+    <div className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden bg-cover">
       <div
         className=" rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden"
         style={{
