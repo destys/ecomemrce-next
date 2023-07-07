@@ -2,7 +2,7 @@
 
 const nextConfig = {
     images: {
-        domains: ['localhost'],
+        domains: ['45.130.43.182'],
     },
     env: {
         PUBLIC_URL: process.env.STRAPI_PUBLIC_URL

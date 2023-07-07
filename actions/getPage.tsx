@@ -1,6 +1,7 @@
 import { MainDataSingle } from "@/types";
 
 const URL = `${process.env.STRAPI_PUBLIC_API_URL}`;
+console.log('URL: ', URL);
 
 const getPage = async (slug: string): Promise<MainDataSingle> => {
   const res = await fetch(`${URL}/${slug}?populate=*`, {

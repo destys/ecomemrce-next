@@ -10,6 +10,7 @@ export const revalidate = 0;
 
 const HomePage = async () => {
   const page = await getPage('home');
+  console.log('page: ', page);
   const billboard = await getBillboard(page.data.attributes.billboards.data.id) || null;
   const products = await getProducts([
     {
