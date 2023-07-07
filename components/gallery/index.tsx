@@ -23,11 +23,12 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
       <Tab.Panels className="aspect-square w-full">
         {images.data.map((image) => (
           <Tab.Panel key={image.id}>
-            <div className="aspect-square relative h-full w-full sm:rounded-lg overflow-hidden">
+            <div className="aspect-square relative h-full w-full sm:rounded-lg overflow-hidden bg-gray-100">
               <Image
                 fill
                 src={`${process.env.PUBLIC_URL}${image?.attributes?.url}`}
                 alt="Image"
+                className="object-contain mix-blend-darken"
               />
             </div>
           </Tab.Panel>

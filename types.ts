@@ -19,22 +19,24 @@ export interface Attributes {
   images: Images;
   image: Image;
   category: Category;
-  sizes: Size[];
-  colors: Color[];
+  sizes: Sizes;
+  colors: Colors;
+  color: string;
+  billboards: {
+    data: Data;
+  };
+
   billboard: {
     data: Data;
   };
 }
 
-export interface Color {
-  id: string;
-  title: string;
-  color: string;
+export interface Colors {
+  data: Data[];
 }
 
-export interface Size {
-  id: string;
-  title: string;
+export interface Sizes {
+  data: Data[];
 }
 
 export interface Images {

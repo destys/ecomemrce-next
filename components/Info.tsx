@@ -3,13 +3,12 @@ import Currency from "@/components/ui/Currency";
 import Button from "./ui/Button";
 import { ShoppingCart } from "lucide-react";
 
-export const revalidate = 0;
-
 interface InfoProps {
   data: Data;
 }
 
 const Info: React.FC<InfoProps> = ({ data }) => {
+  console.log('data: ', data);
 
   return (
     <div>
@@ -26,21 +25,21 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Sizes:</h3>
           <div>
-            {data?.attributes?.sizes?.map((size, index) =>
-              data.attributes.sizes?.length !== index + 1
-                ? size.title + ", "
-                : size.title
+            {data?.attributes?.sizes?.data.map((size, index) =>
+              data.attributes.sizes?.data.length !== index + 1
+                ? size.attributes.title + ", "
+                : size.attributes.title
             )}
           </div>
         </div>
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Colors:</h3>
           <div className="flex gap-x-5">
-            {data?.attributes?.colors?.map((color) => (
+            {data?.attributes?.colors?.data.map((color) => (
               <div
-                key={color.title}
+                key={color.attributes.title}
                 className="h-6 w-6 rounded-full border border-gray-600"
-                style={{ backgroundColor: color.color }}
+                style={{ backgroundColor: color.attributes.color }}
               />
             ))}
           </div>

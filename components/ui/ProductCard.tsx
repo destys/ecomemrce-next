@@ -42,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           src={`${process.env.PUBLIC_URL}${data?.attributes?.images?.data[0]?.attributes.url}`}
           fill
           alt={data.attributes.title}
-          className="aspect-square object-cover rounded-md"
+          className="aspect-square object-contain rounded-md mix-blend-darken"
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
           <div className="flex gap-x-6 justify-center">

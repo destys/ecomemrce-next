@@ -8,8 +8,14 @@ import Container from "@/components/ui/Container";
 
 export const revalidate = 0;
 
-const HomePage = async () => {
-  const page = await getPage('home');
+interface ProductPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+const Page: React.FC<ProductPageProps> = async ({ params }) => {
+  const page = await getPage(params.slug);
   const billboard = await getBillboard(page.data.attributes.billboards.data.id) || null;
   const products = await getProducts([
     {
@@ -31,4 +37,4 @@ const HomePage = async () => {
   );
 };
 
-export default HomePage;
+export default Page;

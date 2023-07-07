@@ -9,7 +9,7 @@ interface GalleyTabProps {
 
 const GalleryTab: React.FC<GalleyTabProps> = ({ data }) => {
   return (
-    <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-md bg-white">
+    <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-m bg-gray-100">
       {({ selected }) => (
         <div>
           <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden rounded-md">
@@ -17,6 +17,7 @@ const GalleryTab: React.FC<GalleyTabProps> = ({ data }) => {
               fill
               src={`${process.env.PUBLIC_URL}${data?.attributes?.url}`}
               alt="Image"
+              className="object-contain mix-blend-darken"
             />
           </span>
           <span
