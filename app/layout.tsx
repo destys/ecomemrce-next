@@ -1,5 +1,6 @@
 import { Urbanist } from "next/font/google";
 
+import ModalProvider from "@/providers/ModalProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ModalProvider />
         <Navbar />
         {children}
         <Footer />

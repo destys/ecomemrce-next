@@ -6,7 +6,10 @@ import getSizes from "@/actions/getSizes";
 
 import BillBoard from "@/components/ui/BillBoard";
 import Container from "@/components/ui/Container";
-import Filter from "../../product/[productId]/components/Filter";
+import Filter from "./components/Filter";
+import NoResults from "@/components/ui/NoResults";
+import ProductCard from "@/components/ui/ProductCard";
+import MobileFilters from "./components/MobileFilters";
 
 export const revalidate = 0;
 
@@ -31,18 +34,18 @@ const Category: React.FC<CategoryPageProps> = async ({
       value: params.categoryId,
     },
     {
-      fields: "colors,attributes,title",
-      operator: searchParams?.colorId ? "eqi" : "ne",
+      fields: "colors,id",
+      operator: searchParams?.colorId ? "eq" : "any",
       value: searchParams?.colorId,
     },
     {
-      fields: "sizes,attributes,title",
-      operator: searchParams?.sizeId ? "eqi" : "ne",
+      fields: "sizes,id",
+      operator: searchParams?.sizeId ? "eq" : "any",
       value: searchParams?.sizeId,
     },
   ]);
+
   const sizes = await getSizes();
-  console.log('sizes: ', sizes);
   const colors = await getColors();
   const category = await getCategory(params.categoryId);
   const billboard = await getBillboard(
@@ -55,9 +58,18 @@ const Category: React.FC<CategoryPageProps> = async ({
         <BillBoard data={billboard} />
         <div className="p-4 sm:p-6 lg:p-8 pb-24">
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
-            {/* Add mobile filters */}
+            <MobileFilters sizes={sizes} colors={colors} />
             <div className="hidden lg:block">
               <Filter valueKey="sizeId" name="Sizes" data={sizes} />
+              <Filter valueKey="colorId" name="Colors" data={colors} />
+            </div>
+            <div className="mt-6 lg:col-span-4 lg:mt-0">
+              {products.data.length === 0 && <NoResults />}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {products.data.map((item) => (
+                  <ProductCard key={item.id} data={item} />
+                ))}
+              </div>
             </div>
           </div>
         </div>

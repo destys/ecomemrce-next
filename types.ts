@@ -8,8 +8,7 @@ export interface MainDataSingle {
 
 export interface Data {
   length?: number;
-  map?(arg0: (size: any, index: number) => any): import("react").ReactNode;
-  id: number;
+  id: string;
   attributes: Attributes;
 }
 
@@ -20,15 +19,22 @@ export interface Attributes {
   images: Images;
   image: Image;
   category: Category;
-  sizes: {
-    data: Data;
-  };
-  colors: {
-    data: Data;
-  };
+  sizes: Size[];
+  colors: Color[];
   billboard: {
     data: Data;
   };
+}
+
+export interface Color {
+  id: string;
+  title: string;
+  color: string;
+}
+
+export interface Size {
+  id: string;
+  title: string;
 }
 
 export interface Images {
@@ -40,7 +46,7 @@ export interface Image {
 }
 
 export interface DataImage {
-  id: number;
+  id: string;
   attributes: ImageAttributes;
 
   data: DataImage;

@@ -23,6 +23,7 @@ const getProducts = async (query: Query[]): Promise<MainData> => {
   });
 
   const url = URL + filtersQuery;
+  console.log('url: ', url);
 
   const res = await fetch(url, {
     headers: {

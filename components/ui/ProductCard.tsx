@@ -1,24 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
 import { Expand, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { Data } from "@/types";
 
 import IconButton from "@/components/ui/IconButton";
 import Currency from "@/components/ui/Currency";
+import usePreviewModal from "@/hooks/usePreviewModal";
 
 interface ProductCardProps {
   data: Data;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
+  ;
+  console.log('data: ', data);
+  const previewModal = usePreviewModal();
   const router = useRouter();
 
   const handleClick = () => {
     router.push(`/product/${data?.id}`);
   };
+
+  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
+    previewModal.onOpen(data);
+  }
 
   return (
     <div
@@ -36,20 +47,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
           <div className="flex gap-x-6 justify-center">
             <IconButton
-              onClick={() => {}}
+              onClick={onPreview}
               icon={<Expand size={20} className="text-gray-600" />}
             />
             <IconButton
-              onClick={() => {}}
+              onClick={() => { }}
               icon={<ShoppingCart size={20} className="text-gray-600" />}
             />
           </div>
         </div>
       </div>
       {/* Description */}
-      <div className="">
-        <p className=" font-semibold text-lg">{data.attributes.title}</p>
-        <p className=" text-sm text-gray-500">
+      <div>
+        <p className="font-semibold text-lg">{data.attributes.title}</p>
+        <p className="text-sm text-gray-500">
           {data.attributes.category?.data?.attributes?.title}
         </p>
       </div>
