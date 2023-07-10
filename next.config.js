@@ -2,7 +2,7 @@
 
 const nextConfig = {
     images: {
-        domains: ['45.130.43.182'],
+        domains: ['pludopoquo.beget.app'],
     },
     env: {
         PUBLIC_URL: process.env.STRAPI_PUBLIC_URL
